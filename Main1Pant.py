@@ -23,9 +23,9 @@ from LogicaUna import LogicaZona, LogicaZonaDirecta
 from kivy.app import App
 from kivy.lang import Builder
 
-import Adafruit_MCP3008
+
 import Adafruit_DHT
-from mcp3208.MCP3208 import MCP3208
+from mcp3208.mcp3208.MCP3208 import MCP3208
 # Software SPI configuration:
 CLK = 11
 MISO = 9
