@@ -86,7 +86,7 @@ class Relees:
         self.Relay_Ch1 = 24
         self.Relay_Ch2 = 25
         self.Relay_Ch3 = 2
-        self.Relay_Ch4 = 23
+        self.Relay_Ch4 = 23 #Algo pasa son el GPIO 23 que dice que no sirve como output
         self.Relay_Ch5 = 22
         self.Relay_Ch6 = 3
         self.Relay_Ch7 = 14

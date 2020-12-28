@@ -25,14 +25,14 @@ from kivy.lang import Builder
 
 import Adafruit_MCP3008
 import Adafruit_DHT
-
+from mcp3208.MCP3208 import MCP3208
 # Software SPI configuration:
-CLK = 18
-MISO = 23
-MOSI = 24
-CS = 25
+CLK = 11
+MISO = 9
+MOSI = 10
+CS = 8
 
-mcp = Adafruit_MCP3008.MCP3008(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
+mcp = MCP3208(clk=CLK, cs=CS, miso=MISO, mosi=MOSI)
 
 
 def comprobarConexion():
