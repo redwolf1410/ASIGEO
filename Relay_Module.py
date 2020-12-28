@@ -149,39 +149,39 @@ class Relees:
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch4, GPIO.HIGH)
-                print("Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
+                print("Channel 4:The Common Contact is access to the Normal Closed Contact!\n")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch5, GPIO.LOW)
-                print("Channel 1:The Common Contact is access to the Normal Open Contact!")
+                print("Channel 5:The Common Contact is access to the Normal Open Contact!")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch5, GPIO.HIGH)
-                print("Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
+                print("Channel 5:The Common Contact is access to the Normal Closed Contact!\n")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch6, GPIO.LOW)
-                print("Channel 1:The Common Contact is access to the Normal Open Contact!")
+                print("Channel 6:The Common Contact is access to the Normal Open Contact!")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch6, GPIO.HIGH)
-                print("Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
+                print("Channel 6:The Common Contact is access to the Normal Closed Contact!\n")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch7, GPIO.LOW)
-                print("Channel 1:The Common Contact is access to the Normal Open Contact!")
+                print("Channel 7:The Common Contact is access to the Normal Open Contact!")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch7, GPIO.HIGH)
-                print("Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
+                print("Channel 7:The Common Contact is access to the Normal Closed Contact!\n")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch8, GPIO.LOW)
-                print("Channel 1:The Common Contact is access to the Normal Open Contact!")
+                print("Channel 8:The Common Contact is access to the Normal Open Contact!")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch8, GPIO.HIGH)
-                print("Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
+                print("Channel 8:The Common Contact is access to the Normal Closed Contact!\n")
                 time.sleep(0.5)
 
         except:
