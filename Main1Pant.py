@@ -25,7 +25,7 @@ from kivy.lang import Builder
 
 
 import Adafruit_DHT
-from mcp3208.mcp3208.MCP3208 import MCP3208
+from MCP3208 import MCP3208
 # Software SPI configuration:
 CLK = 11
 MISO = 9
@@ -276,7 +276,7 @@ class MainApp(App):
         print('Leyendo sensores')
         error = False
         for i in range(0, 8):
-            lev = mcp.read_adc(i)
+            lev = mcp.read(i)
 
             if self.pt1000[i]:
                 ch, err = from_level_to_temp(lev)
