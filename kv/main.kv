@@ -125,7 +125,7 @@
                 pos_hint:{"top": 1., "center_x": .6}
                 font_size:20
                 markup:True
-                text:'[b][color=ED5499] REGULACION MULTIBETON [/color][/b]'
+                text:'[b][color=ED5499] REGULACIÓN MULTIBETON [/color][/b]'
             BotonAbajo:
                 size_hint: .11, .17
 				pos_hint:{"center_x": .84, "y": .06}
@@ -165,7 +165,7 @@
 
             EtiqModo:
                 id:modo0
-                text:'[b][color=FF1700] MODO CALEFACCION [/color][/b]'
+                text:app.etiqprinc
                 size_hint:.1,.1
                 pos_hint:{"center_y": .95, "center_x": .17}
                 on_press:sm.current = "modos_func"
@@ -185,22 +185,22 @@
             EtiqPrincipal:
                 text:'[b]TEMPERATURA AMBIENTE[/b]'
                 size_hint:.1,.1
-                pos_hint:{"center_y": .665, "center_x": .185}
+                pos_hint:{"center_y": .665, "center_x": .180}
 
             EtiqPrincipal:
                 text:'[b]TEMPERATURA DESEADA[/b]'
                 size_hint:.1,.1
-                pos_hint:{"center_y": .57, "center_x": .178}
+                pos_hint:{"center_y": .57, "center_x": .175}
 
             EtiqPrincipal:
                 text:'[b]TEMPERATURA AGUA[/b]'
                 size_hint:.1,.1
-                pos_hint:{"center_y": .48, "center_x": .155}
+                pos_hint:{"center_y": .48, "center_x": .152}
 
             EtiqPrincipal:
                 text:'[b]ESTADO REGULACIÓN[b]'
                 size_hint:.1,.1
-                pos_hint:{"center_y": .385, "center_x": .16}
+                pos_hint:{"center_y": .385, "center_x": .158}
 
             EtiqPrincipal:
                 text:'[b]BOMBA CIRCULADORA[/b]'
@@ -769,10 +769,7 @@
 					text:"Login"
 					font_size:25
 					on_press: sm.current ='login'
-				Button:
-					text:"Cambiar titulos"
-					font_size:25
-					on_press: sm.current ='cambiar_titulos'
+
 	Fondo:
 	    name:'curva'
 		FloatLayout:

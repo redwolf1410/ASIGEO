@@ -86,7 +86,7 @@ class Main(ScreenManager):
 
 def from_level_to_temp(level):
     error = False
-    volt = level * 3.3 / 1024
+    volt = level * 3.3 / 4096
     r = (1000 * volt) / (3.3 - volt)
     r1 = 100000 * r / (100000 - r)
     temp = pt1000_temperature(r1)
@@ -96,7 +96,7 @@ def from_level_to_temp(level):
 
 
 def from_level_to_temp_ntc(beta, r25, level):
-    volt = level * 3.3 / 1024
+    volt = level * 3.3 / 4096
     r = (10000 * volt) / (3.3 - volt)
     r1 = 100000 * r / (100000 - r)
     error = False
@@ -131,14 +131,19 @@ class MainApp(App):
         self.ch_errors = [False, False, False, False, False, False, False, False]
         self.error = False
         self.t_amb = [20, 20, 20]
-
+        self.etiqprinc = ""
         self.t_suelo = [25, 25]
 
         self.t_agua = [25, 25]
         with open("json_f/modo.json") as f:
             modo = json.load(f)
             self.modo = modo['modo']
-
+        if modo == "invierno":
+            self.etiqprinc = '[b][color=FF1700] MODO CALEFACCION [/color][/b]'
+        elif modo == "verano":
+            self.etiqprinc = '[b][color=5FE5B5] MODO REFRIGERACION [/color][/b]'
+        else:
+            self.etiqprinc = '[b][color=A49B0F] APAGADO [/color][/b]'
         with open("json_f/pantalla1.json") as f:
             pant = json.load(f)
             cons1 = pant['consigna']
