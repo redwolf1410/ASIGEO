@@ -6,8 +6,8 @@ import numpy as np
 #print(scheduler)
 #with open("json_f/scheduler.json", "w") as f:
 #    json.dump(scheduler, f,indent=4)
-estado_sondas = [{"b1":"down",
-                        "b2":"normal"} for col in range(8)]
+estado_sondas = [{"b1":"normal",
+                "b2":"down"} for col in range(8)]
 
 
 with open("json_f/states_sondas.json", "w") as f:
