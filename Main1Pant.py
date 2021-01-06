@@ -180,6 +180,11 @@ class MainApp(App):
         with open("json_f/states_sondas.json") as f:
             self.states_sondas = json.load(f)
 
+        with open("json_f/estado_bombas.json") as f:
+            self.estado_bombas = json.load(f)
+        with open("json_f/estado_curvas.json") as f:
+            self.estado_curvas = json.load(f)
+
         self.ajustes = True
 
         self.logicas = [LogicaZona(1), LogicaZona(2)]
@@ -414,6 +419,21 @@ class MainApp(App):
             f.seek(0)
             json.dump(ajustes, f)
 
+        if curva == 0:
+            self.estado_curvas[zona]["b1"] = "down"
+            self.estado_curvas[zona]["b2"] = "normal"
+            self.estado_curvas[zona]["b3"] = "normal"
+        elif curva == 1:
+            self.estado_curvas[zona]["b1"] = "normal"
+            self.estado_curvas[zona]["b2"] = "down"
+            self.estado_curvas[zona]["b3"] = "normal"
+        elif curva == 2:
+            self.estado_curvas[zona]["b1"] = "normal"
+            self.estado_curvas[zona]["b2"] = "normal"
+            self.estado_curvas[zona]["b3"] = "down"
+        with open("json_f/estado_bombas.json", "w") as f:
+            json.dump(self.estado_bombas, f, indent=4)
+
     def modo_bomba(self, zona, modo):
         self.bombas[zona] = modo
         with open("json_f/ajustes.json", 'r+') as f:
@@ -423,6 +443,15 @@ class MainApp(App):
             ajustes['bombas'] = aj_bomba
             f.seek(0)
             json.dump(ajustes, f)
+        if modo:
+            self.estado_bombas[zona]["b1"] = "normal"
+            self.estado_bombas[zona]["b2"] = "down"
+        else:
+            self.estado_bombas[zona]["b1"] = "down"
+            self.estado_bombas[zona]["b2"] = "normal"
+        with open("json_f/estado_bombas.json", "w") as f:
+            json.dump(self.estado_bombas, f, indent=4)
+
 
     def cambia_sonda(self, sonda, num):
         self.pt1000[num] = sonda

@@ -796,16 +796,19 @@
 					text:"Normal"
 					font_size:25
 					group:"zona1"
+					state: app.estado_curvas[0]["b1"]
 					on_press: app.modo_curva(0,0)
 				ToggleButton:
 					text:"Intensa"
 					font_size:25
 					group:"zona1"
+					state: app.estado_curvas[0]["b2"]
 					on_press: app.modo_curva(1,0)
 				ToggleButton:
 					text:"Suave"
 					font_size:25
 					group:"zona1"
+					state: app.estado_curvas[0]["b3"]
 					on_press: app.modo_curva(2,0)
 
 			BoxLayout:
@@ -820,16 +823,19 @@
 					text:"Normal"
 					font_size:25
 					group:"zona2"
+					state: app.estado_curvas[1]["b1"]
 					on_press: app.modo_curva(0,1)
 				ToggleButton:
 					text:"Intenso"
 					font_size:25
 					group:"zona2"
+					state: app.estado_curvas[1]["b2"]
 					on_press: app.modo_curva(1,1)
 				ToggleButton:
 					text:"Suave"
 					font_size:25
 					group:"zona2"
+					state: app.estado_curvas[1]["b3"]
 					on_press: app.modo_curva(2,1)
 
 	Fondo:
@@ -913,11 +919,13 @@
 					text:"Continuo"
 					font_size:25
 					group:"zona1"
+					state: app.estado_bombas[0]["b1"]
 					on_press: app.modo_bomba(0,False)
 				ToggleButton:
 					text:"Modo ECO"
 					font_size:25
 					group:"zona1"
+					state: app.estado_bombas[0]["b2"]
 					on_press: app.modo_bomba(0,True)
 
 			BoxLayout:
@@ -931,11 +939,13 @@
 					text:"Continuo"
 					font_size:25
 					group:"zona2"
+					state: app.estado_bombas[1]["b1"]
 					on_press: app.modo_bomba(1,False)
 				ToggleButton:
 					text:"Modo ECO"
 					font_size:25
 					group:"zona2"
+					state: app.estado_bombas[1]["b2"]
 					on_press: app.modo_bomba(1,True)
 
     Fondo:
