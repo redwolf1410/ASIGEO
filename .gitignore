@@ -256,4 +256,5 @@ dmypy.json
 pyvenv.cfg
 pip-selfcheck.json
 pruebas.py
+ini_json.py
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,python,venv
