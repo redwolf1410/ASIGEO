@@ -120,7 +120,7 @@ class MainApp(App):
 
         self.act_seguridades = 0
 
-        self.scheduler = np.zeros((2, 7, 24))
+
 
         self.dict_dias = {"Lunes": 0, "Martes": 1, "Miercoles": 2, "Jueves": 3, "Viernes": 4, "Sabado": 5, "Domingo": 6,
                           "Laborables": [0, 1, 2, 3, 4], "Fin de semana": [5, 6], "Todos": [0, 1, 2, 3, 4, 5, 6], }
@@ -135,6 +135,7 @@ class MainApp(App):
         self.t_suelo = [25, 25]
 
         self.t_agua = [25, 25]
+        self.scheduler = np.load("json_f/scheduler.npy")
         with open("json_f/modo.json") as f:
             modo = json.load(f)
             self.modo = modo['modo']
@@ -156,12 +157,15 @@ class MainApp(App):
             pant = json.load(f)
             cons3 = pant['consigna']
         self.consignas = [cons1, cons2, cons3]
+        with open("json_f/consignas.json") as f:
+            pant = json.load(f)
+            self.reducido_inv = pant['reducido_inv']
+            self.reducido_ver = pant['reducido_ver']
+            self.apagado_inv = pant['apagado_inv']
+            self.apagado_ver = pant['apagado_ver']
 
-        self.reducido_inv = [19, 19]
-        self.reducido_ver = [26, 26]
         self.zona = 0
-        self.apagado_inv = [10, 10]
-        self.apagado_ver = [35, 35]
+
 
         with open("json_f/ajustes.json") as f:
             ajustes = json.load(f)
@@ -173,6 +177,8 @@ class MainApp(App):
         self.comfort = [0, 0]
         with open("json_f/states.json") as f:
             self.states = json.load(f)
+        with open("json_f/states_sondas.json") as f:
+            self.states_sondas = json.load(f)
 
         self.ajustes = True
 
@@ -304,7 +310,7 @@ class MainApp(App):
 
     def borrar_scheduler(self):
         self.scheduler[:, :, :] = 0
-        print(self.scheduler)
+        np.save("json_f/scheduler.npy",self.scheduler)
 
     def cambiar_modo(self, modo):
         self.modo = modo
@@ -351,11 +357,13 @@ class MainApp(App):
 
         dia_sched = self.scheduler[zona, dia, :]
         self.scheduler[zona, dia_copiar, :] = dia_sched
+        np.save("json_f/scheduler.npy", self.scheduler)
 
     def reset_sched(self):
         self.scheduler = np.zeros((2, 7, 24))
         self.root.ids.dias.text = 'Lunes'
         self.cambiar_dia()
+        np.save("json_f/scheduler.npy", self.scheduler)
 
     def cambiar_dia(self):
         dia = self.root.ids.dias.text
@@ -391,6 +399,7 @@ class MainApp(App):
     def set_sched_hora(self, hora, dia, valor):
         dia_sched = self.dict_dias[dia]
         self.scheduler[self.zona, dia_sched, hora] = valor
+        np.save("json_f/scheduler.npy", self.scheduler)
 
     def dummy(self):
         pass
@@ -423,6 +432,14 @@ class MainApp(App):
             f.seek(0)
             json.dump(ajustes, f)
 
+        if sonda == 0:
+            self.states_sondas[num]["b1"] = "normal"
+            self.states_sondas[num]["b2"] = "down"
+        else:
+            self.states_sondas[num]["b1"] = "down"
+            self.states_sondas[num]["b2"] = "normal"
+        with open("json_f/states_sondas.json", "w") as f:
+            json.dump(self.states_sondas, f, indent=4)
     def lock(self):
         self.ajustes = True
         self.next_screen('menu')
