@@ -145,7 +145,7 @@ class Relees:
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch4, GPIO.LOW)
-                print("Channel 3:The Common Contact is access to the Normal Open Contact!")
+                print("Channel 4:The Common Contact is access to the Normal Open Contact!")
                 time.sleep(0.5)
 
                 GPIO.output(self.Relay_Ch4, GPIO.HIGH)

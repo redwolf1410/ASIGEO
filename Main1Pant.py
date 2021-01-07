@@ -192,6 +192,9 @@ class MainApp(App):
 
         self.mutex = threading.Semaphore(1)
         self.mutex_sec = threading.Semaphore(1)
+        self.mutex_init = threading.Semaphore(0)
+
+
         thread1 = threading.Thread(target=self.main, args=[1])
         thread1.start()
         thread2 = threading.Thread(target=self.main, args=[2])
@@ -541,10 +544,16 @@ class MainApp(App):
             self.zona_directa.consigna = self.consignas[zona]
             self.mutex.release()
             funcionando = self.zona_directa.lógica(self.modo)
-            if funcionando:
-                self.root.ids.abriendo3.text = 'Encendido'
-            else:
-                self.root.ids.abriendo3.text = 'Apagado'
+            try:
+                if funcionando:
+                    self.root.ids.abriendo3.text = 'Encendido'
+                else:
+                    self.root.ids.abriendo3.text = 'Apagado'
+
+            except:
+                print("KV no inicializado")
+
+
 
     def main(self, zona):
         zona = zona - 1
@@ -595,6 +604,8 @@ class MainApp(App):
                     else:
                         func = self.logicas[zona].logica(self.modo)
                         print("zona " + str(zona),"funcionando" + str(func))
+
+
                     if zona == 0:
                         if func == 1 or func == 2:
                             self.root.ids.abriendo1.text = 'Abriendo'
