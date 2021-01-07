@@ -594,7 +594,7 @@ class MainApp(App):
                         time.sleep(5)
                     else:
                         func = self.logicas[zona].logica(self.modo)
-                        print(func)
+                        print("zona " + str(zona),"funcionando" + str(func))
                     if zona == 0:
                         if func == 1 or func == 2:
                             self.root.ids.abriendo1.text = 'Abriendo'
