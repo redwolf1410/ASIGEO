@@ -568,6 +568,7 @@ class MainApp(App):
                     self.logicas[zona].sonda_suelo = self.t_suelo[zona]
                     self.logicas[zona].modo_bomba = self.bombas[zona]
                     self.logicas[zona].modo_curva = self.curvas[zona]
+                    print(self.modo)
 
                     if sched == 0:
 
@@ -593,6 +594,7 @@ class MainApp(App):
                         time.sleep(5)
                     else:
                         func = self.logicas[zona].logica(self.modo)
+                        print(func)
                     if zona == 0:
                         if func == 1 or func == 2:
                             self.root.ids.abriendo1.text = 'Abriendo'

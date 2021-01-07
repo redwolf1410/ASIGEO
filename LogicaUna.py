@@ -171,6 +171,8 @@ class LogicaZona:
 
             consigna = curva(self.sonda_exterior, b, m)
             diferencial = consigna - self.sonda_agua
+            print("Curva= " + consigna)
+            print("Diferencial= " + diferencial)
 
             pideLargo = diferencial > 6
             pideCorto = 1 < diferencial <= 6
