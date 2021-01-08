@@ -139,12 +139,16 @@ class MainApp(App):
         with open("json_f/modo.json") as f:
             modo = json.load(f)
             self.modo = modo['modo']
-        if modo == "invierno":
+            print("El modo con el que se ha inicializado es " + self.modo)
+        if self.modo == "invierno":
             self.etiqprinc = '[b][color=FF1700] MODO CALEFACCION [/color][/b]'
-        elif modo == "verano":
+
+        elif self.modo == "verano":
             self.etiqprinc = '[b][color=5FE5B5] MODO REFRIGERACION [/color][/b]'
+
         else:
             self.etiqprinc = '[b][color=A49B0F] APAGADO [/color][/b]'
+
         with open("json_f/pantalla1.json") as f:
             pant = json.load(f)
             cons1 = pant['consigna']
@@ -204,6 +208,9 @@ class MainApp(App):
         thread3.start()
         th_read = threading.Thread(target=self.lectura_sondas)
         th_read.start()
+
+    def camzona(self,zona):
+        self.zona = zona
 
     def set_secvalue(self):
 
@@ -544,6 +551,7 @@ class MainApp(App):
             self.zona_directa.consigna = self.consignas[zona]
             self.mutex.release()
             funcionando = self.zona_directa.lógica(self.modo)
+            time.sleep(5)
             try:
                 if funcionando:
                     self.root.ids.abriendo3.text = 'Encendido'
@@ -598,7 +606,7 @@ class MainApp(App):
                             self.logicas[zona].consigna = self.apagado_ver[zona]
 
                     self.mutex.release()
-                    if self.error:
+                    if False: #self.error:#Esto cuando sepamos que va bien descomentar
                         self.logicas[zona].seguridad()
                         time.sleep(5)
                     else:
@@ -642,7 +650,7 @@ class MainApp(App):
             pant = json.load(f)
             pant['consigna'] = self.consignas[zona]
             f.seek(0)
-            json.dump(pant, f)
+            json.dump(pant, f,indent=4)
 
     def cambiar_cons_reducido(self, num, zona, modo):
         zona = zona - 1

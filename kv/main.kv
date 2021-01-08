@@ -216,7 +216,9 @@
                     padding:[5,0,20,0]
                     LabelButton:
                         text:'[b]ZONA 1[/b]'
+                        on_press:app.camzona(0)
                         on_release:sm.current='menu1'
+
 
                     EtiqPrincipal:
                         text:'[b]CONFORT[/b]'
@@ -241,6 +243,7 @@
                     padding:[5,0,20,0]
                     LabelButton:
                         text:'[b]ZONA 2[/b]'
+                        on_press:app.camzona(1)
                         on_press:sm.current='menu2'
 
                     EtiqPrincipal:
@@ -458,6 +461,7 @@
 				pos_hint:{"center_y": .5, "center_x": .94}
 				size_hint: .12, .17
 				source:"data/flecha.png"
+				on_press:app.camzona(1)
 				on_press:sm.current ='menu2'
 
 
@@ -537,6 +541,7 @@
 			BotonAbajo:
 				pos_hint:{"center_x": .3, "y": .0}
 				on_press:sm.current ='scheduler'
+				on_press:app.cambiar_dia()
 				source:"data/calendario.png"
 			BotonAbajo:
 				pos_hint:{"center_x": .5, "y": .0}
@@ -702,6 +707,7 @@
 				pos_hint:{"center_y": .5, "center_x": .94}
 				size_hint: .12, .17
 				source:"data/flecha.png"
+				on_press:app.camzona(0)
 				on_press:sm.current ='menu1'
 	Fondo:
 	    name:'modos_func'

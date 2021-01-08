@@ -158,6 +158,7 @@ class LogicaZona:
             seguridadmax = (calor and tmaxAgua) or (calor and tmaxSuelo)
 
             termostato = self.sonda_ambiente < self.consigna - self.grado_confort
+            print("Termostato",self.zona,termostato)
 
             if self.modo_curva == 0:
                 m = 1
@@ -202,6 +203,8 @@ class LogicaZona:
             if B019:
                 reles.parar_zona(self.zona)
                 self.temporizador = 0
+                sleep(5)
+                self.funcionando = 0
 
             elif B014:
                 reles.abrir_zona(self.zona)
@@ -239,7 +242,7 @@ class LogicaZona:
                     self.temporizador = 0
                     sleep(5)
 
-                else:  # funcionando = 2
+                else:  # funcionando = 2 o 0
 
                     self.temporizador += 1
                     sleep(5)
