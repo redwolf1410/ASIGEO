@@ -571,8 +571,21 @@ class MainApp(App):
                 while True:
                     ahora = datetime.now()
                     hora = ahora.hour
+                    hour = "{:0>2d}".format(ahora.hour)
+                    min = "{:0>2d}".format(ahora.minute)
+                    day = "{:0>2d}".format(ahora.day)
+                    mth = "{:0>2d}".format(ahora.month)
+                    year = str(ahora.year)
+                    try:
+                        self.root.ids.hora.text = hour +':' + min
+                        self.root.ids.fecha.text = day + '/' + mth + '/' + year
+                    except:
+                        print(Exception)
+
+
                     dia = datetime.weekday(ahora)
                     sched = self.scheduler[zona,dia, hora]
+
                     if self.act_seguridades == 1:
                         self.mutex_sec.acquire()
                         self.logicas[zona].act_seguridades()
@@ -588,6 +601,8 @@ class MainApp(App):
                     print(self.modo)
 
                     if sched == 0:
+
+
 
                         if self.modo == 'invierno':
                             self.logicas[zona].consigna = self.consignas[zona]
@@ -605,6 +620,7 @@ class MainApp(App):
                         elif self.modo == 'verano':
                             self.logicas[zona].consigna = self.apagado_ver[zona]
 
+                    self.etiquetas_mod(sched, zona)
                     self.mutex.release()
                     if False: #self.error:#Esto cuando sepamos que va bien descomentar
                         self.logicas[zona].seguridad()
@@ -617,17 +633,23 @@ class MainApp(App):
                     if zona == 0:
                         if func == 1 or func == 2:
                             self.root.ids.abriendo1.text = 'Abriendo'
+                            self.root.ids.est_reg_z1_p0.text = 'Abriendo'
                         elif func == 3:
                             self.root.ids.abriendo1.text = 'Cerrando'
+                            self.root.ids.est_reg_z1_p0.text = 'Cerrando'
                         else:
                             self.root.ids.abriendo1.text = 'T Correcta'
+                            self.root.ids.est_reg_z1_p0.text = 'T Correcta'
                     elif zona == 1:
                         if func == 1 or func == 2:
                             self.root.ids.abriendo2.text = 'Abriendo'
+                            self.root.ids.est_reg_z2_p0.text = 'Abriendo'
                         elif func == 3:
                             self.root.ids.abriendo2.text = 'Cerrando'
+                            self.root.ids.est_reg_z2_p0.text = 'Cerrando'
                         else:
                             self.root.ids.abriendo2.text = 'T Correcta'
+                            self.root.ids.est_reg_z2_p0.text = 'T Correcta'
 
 
 
@@ -689,11 +711,13 @@ class MainApp(App):
 
     def actualizar_labels(self):
         if not self.ch_errors[0]:
+            self.root.ids.t_ext0.text ='[b]T EXTERIOR:' + '    ' + '[color=006CFF]' + str(self.t_ext) + ' [/color][/b]'
             self.root.ids.t_ext1.text = str(self.t_ext)
             self.root.ids.t_ext2.text = str(self.t_ext)
             self.root.ids.t_ext3.text = str(self.t_ext)
             self.root.ids.t_exterior.text = str(self.t_ext)
         else:
+            self.root.ids.t_ext0.text = '[b]T EXTERIOR:' + '    ' + '[color=BE1515]' + 'ERROR' + ' [/color][/b]'
             self.root.ids.t_ext1.text = '[color=F14108] Error [/color]'
             self.root.ids.t_ext2.text = '[color=F14108] Error [/color]'
             self.root.ids.t_ext3.text = '[color=F14108] Error [/color]'
@@ -709,16 +733,20 @@ class MainApp(App):
         if not self.ch_errors[2]:
 
             self.root.ids.t_agua_z1.text = str(self.t_agua[0])
+            self.root.ids.t_agua_z1_p0.text = str(self.t_agua[0]) + 'ºC'
         else:
 
             self.root.ids.t_agua_z1.text = '[color=F14108] Error [/color]'
+            self.root.ids.t_agua_z1_p0.text = '[color=F14108] Error [/color]'
 
         if not self.ch_errors[3]:
             self.root.ids.t_amb1.text = str(self.t_amb[0])
             self.root.ids.t_amb_z1.text = str(self.t_amb[0])
+            self.root.ids.t_amb_z1_p0.text = str(self.t_amb[0]) + 'ºC'
         else:
             self.root.ids.t_amb1.text = '[color=F14108] Error [/color]'
             self.root.ids.t_amb_z1.text = '[color=F14108] Error [/color]'
+            self.root.ids.t_amb_z1_p0.text = '[color=F14108] Error [/color]'
 
         if not self.ch_errors[4]:
 
@@ -730,24 +758,53 @@ class MainApp(App):
         if not self.ch_errors[5]:
 
             self.root.ids.t_agua_z2.text = str(self.t_agua[1])
+            self.root.ids.t_agua_z2_p0.text = str(self.t_agua[1]) + 'ºC'
         else:
 
             self.root.ids.t_agua_z2.text = '[color=F14108] Error [/color]'
+            self.root.ids.t_agua_z2_p0.text = '[color=F14108] Error [/color]'
 
         if not self.ch_errors[6]:
             self.root.ids.t_amb2.text = str(self.t_amb[1])
             self.root.ids.t_amb_z2.text = str(self.t_amb[1])
+            self.root.ids.t_amb_z2_p0.text = str(self.t_amb[1]) +'ºC'
         else:
             self.root.ids.t_amb2.text = '[color=F14108] Error [/color]'
             self.root.ids.t_amb_z2.text = '[color=F14108] Error [/color]'
+            self.root.ids.t_amb_z2_p0.text = '[color=F14108] Error [/color]'
 
         if not self.ch_errors[7]:
             self.root.ids.t_amb3.text = str(self.t_amb[2])
             self.root.ids.t_amb_z3.text = str(self.t_amb[2])
+            self.root.ids.t_amb_z3_p0.text = str(self.t_amb[2]) +'ºC'
 
         else:
             self.root.ids.t_amb3.text = '[color=F14108] Error [/color]'
             self.root.ids.t_amb_z3.text = '[color=F14108] Error [/color]'
+            self.root.ids.t_amb_z3_p0.text = '[color=F14108] Error [/color]'
+
+    def etiquetas_mod(self, sched, zona):
+        if zona == 0:
+            self.root.ids.t_des_z1_p0.text = self.consignas[zona]
+            if sched == 0:
+                self.root.ids.modo_z1.text = 'CONFORT'
+
+            elif sched == 1:
+                self.root.ids.modo_z1.text = 'REDUCIDO'
+            else:
+                self.root.ids.modo_z1.text = 'APAGADO'
+        elif zona == 1:
+            self.root.ids.t_des_z2_p0.text = self.consignas[zona]
+            self.root.ids.t_des_z3_p0.text = self.consignas[2]
+            if sched == 0:
+                self.root.ids.modo_z2.text = 'CONFORT'
+            elif sched == 1:
+                self.root.ids.modo_z2.text = 'REDUCIDO'
+            else:
+                self.root.ids.modo_z2.text = 'APAGADO'
+
+
+        pass
 
 
 if __name__ == '__main__':
