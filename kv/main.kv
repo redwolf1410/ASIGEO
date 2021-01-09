@@ -413,28 +413,17 @@
 				size_hint: .3, .1
 				halign: 'center'
 			BotonAbajo:
-				pos_hint:{"center_x": .1, "y":.0}
+				pos_hint:{"center_x": .2, "y":.0}
 				source:"data/invierno.png"
 				on_release:sm.current = 'consignas_z1'
 			BotonAbajo:
-				pos_hint:{"center_x": .3, "y": .0}
+				pos_hint:{"center_x": .5, "y": .0}
 				on_press:sm.current="scheduler"
 				source:"data/calendario.png"
 
-			BotonAbajo:
-				pos_hint:{"center_x": .5, "y": .0}
-				on_press:sm.current="sensores"
-				source:"data/Sondas.png"
-			BotonAbajo:
-				id:ajustes
-				pos_hint:{"center_x": .7, "y": .0}
-				source:"data/ajustes.png"
-				background_disabled_normal:"data/ajustes.png"
-
-				on_press: sm.current ='ajustes'
 
 			BotonAbajo:
-				pos_hint:{"center_x": .9, "y": .0}
+				pos_hint:{"center_x": .8, "y": .0}
 				source:"data/home.png"
 
 				on_press:sm.current ='menu0'
@@ -549,25 +538,17 @@
 				size_hint: .3, .1
 				halign: 'center'
 			BotonAbajo:
-				pos_hint:{"center_x": .1, "y":.0}
+				pos_hint:{"center_x": .2, "y":.0}
 				source:"data/invierno.png"
 				on_release:sm.current ='consignas_z2'
 			BotonAbajo:
-				pos_hint:{"center_x": .3, "y": .0}
+				pos_hint:{"center_x": .5, "y": .0}
 				on_press:sm.current ='scheduler'
 				on_press:app.cambiar_dia()
 				source:"data/calendario.png"
-			BotonAbajo:
-				pos_hint:{"center_x": .5, "y": .0}
-				on_press:sm.current ='sensores'
-				source:"data/Sondas.png"
-			BotonAbajo:
-				pos_hint:{"center_x": .7, "y": .0}
 
-				source:"data/ajustes.png"
-				on_press: sm.current ='ajustes'
 			BotonAbajo:
-				pos_hint:{"center_x": .9, "y": .0}
+				pos_hint:{"center_x": .8, "y": .0}
 				on_press:sm.current ='menu0'
 				source:"data/home.png"
 
@@ -971,6 +952,11 @@
     Fondo:
         name:"scheduler"
         FloatLayout:
+            BotonAbajo:
+
+				pos_hint:{"center_x": .9, "y": .0}
+				source:"data/home.png"
+				on_release:app.backzone()
             BotonAbajo:
 
 				pos_hint:{"center_x": .9, "y": .0}
@@ -1776,7 +1762,10 @@
 
 	Fondo:
 	    name:'consignas_z2'
-
+        BotonAbajo:
+			pos_hint:{"center_x": .1, "y": .0}
+			source:"data/flecha_atras.png"
+			on_release:sm.current ='menu2'
 	    BotonAbajo:
 			pos_hint:{"center_x": .9, "y": .0}
 			source:"data/home.png"

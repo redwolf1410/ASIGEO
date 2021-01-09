@@ -174,7 +174,7 @@ class MainApp(App):
         with open("json_f/ajustes.json") as f:
             ajustes = json.load(f)
             bombas = ajustes['bombas']
-            self.bombas = [bool(bombas[0]), bool(bombas[0])]
+            self.bombas = [bool(bombas[0]), bool(bombas[1])]
             self.curvas = ajustes['curvas']
             self.pt1000 = ajustes['pt1000']
 
@@ -208,7 +208,11 @@ class MainApp(App):
         thread3.start()
         th_read = threading.Thread(target=self.lectura_sondas)
         th_read.start()
-
+    def backzone(self):
+        if self.zona == 0:
+            self.root.current = "menu1"
+        elif self.zona == 1:
+            self.root.current = "menu2"
     def camzona(self,zona):
         self.zona = zona
 
@@ -456,9 +460,21 @@ class MainApp(App):
         if modo:
             self.estado_bombas[zona]["b1"] = "normal"
             self.estado_bombas[zona]["b2"] = "down"
+            try:
+
+                if zona==0: self.root.ids.mod_bomb_z1.text = "[b] MODO ECO [/b]"
+                elif zona==1: self.root.ids.mod_bomb_z2.text = "[b] MODO ECO [/b]"
+            except:
+                print(Exception)
         else:
             self.estado_bombas[zona]["b1"] = "down"
             self.estado_bombas[zona]["b2"] = "normal"
+            try:
+
+                if zona==0: self.root.ids.mod_bomb_z1.text = "[b] AUTO ON [/b]"
+                elif zona==1: self.root.ids.mod_bomb_z2.text = "[b] AUTO ON [/b]"
+            except:
+                print(Exception)
         with open("json_f/estado_bombas.json", "w") as f:
             json.dump(self.estado_bombas, f, indent=4)
 
@@ -686,9 +702,11 @@ class MainApp(App):
         elif zona == 1:
             if modo == 'inv':
                 self.reducido_inv[zona] = self.reducido_inv[zona] + num
+                self.root.ids.cons_z2_inv_red.text = str(self.reducido_inv[zona])
 
             else:
                 self.reducido_ver[zona] = self.reducido_ver[zona] + num
+                self.root.ids.cons_z2_ver_red.text = str(self.reducido_ver[zona])
 
     def cambiar_cons_apagado(self, num, zona, modo):
         zona = zona - 1
@@ -702,9 +720,11 @@ class MainApp(App):
         elif zona == 1:
             if modo == 'inv':
                 self.apagado_inv[zona] = self.apagado_inv[zona] + num
+                self.root.ids.cons_z2_inv_apa.text = str(self.apagado_inv[zona])
 
             else:
                 self.apagado_inv[zona] = self.apagado_inv[zona] + num
+                self.root.ids.cons_z2_ver_apa.text = str(self.apagado_ver[zona])
 
     def build(self):
         self.root = Builder.load_file('kv/main.kv')
@@ -733,7 +753,7 @@ class MainApp(App):
         if not self.ch_errors[2]:
 
             self.root.ids.t_agua_z1.text = str(self.t_agua[0])
-            self.root.ids.t_agua_z1_p0.text = str(self.t_agua[0]) + 'ºC'
+            self.root.ids.t_agua_z1_p0.text = '[b]'+str(self.t_agua[0]) + 'ºC [/b]'
         else:
 
             self.root.ids.t_agua_z1.text = '[color=F14108] Error [/color]'
@@ -742,7 +762,7 @@ class MainApp(App):
         if not self.ch_errors[3]:
             self.root.ids.t_amb1.text = str(self.t_amb[0])
             self.root.ids.t_amb_z1.text = str(self.t_amb[0])
-            self.root.ids.t_amb_z1_p0.text = str(self.t_amb[0]) + 'ºC'
+            self.root.ids.t_amb_z1_p0.text = '[b]' + str(self.t_amb[0]) + 'ºC[/b]'
         else:
             self.root.ids.t_amb1.text = '[color=F14108] Error [/color]'
             self.root.ids.t_amb_z1.text = '[color=F14108] Error [/color]'
@@ -758,7 +778,7 @@ class MainApp(App):
         if not self.ch_errors[5]:
 
             self.root.ids.t_agua_z2.text = str(self.t_agua[1])
-            self.root.ids.t_agua_z2_p0.text = str(self.t_agua[1]) + 'ºC'
+            self.root.ids.t_agua_z2_p0.text ='[b]' + str(self.t_agua[1]) + 'ºC [/b]'
         else:
 
             self.root.ids.t_agua_z2.text = '[color=F14108] Error [/color]'
@@ -767,7 +787,7 @@ class MainApp(App):
         if not self.ch_errors[6]:
             self.root.ids.t_amb2.text = str(self.t_amb[1])
             self.root.ids.t_amb_z2.text = str(self.t_amb[1])
-            self.root.ids.t_amb_z2_p0.text = str(self.t_amb[1]) +'ºC'
+            self.root.ids.t_amb_z2_p0.text = '[b]' + str(self.t_amb[1])+'ºC [/b]'
         else:
             self.root.ids.t_amb2.text = '[color=F14108] Error [/color]'
             self.root.ids.t_amb_z2.text = '[color=F14108] Error [/color]'
@@ -776,7 +796,7 @@ class MainApp(App):
         if not self.ch_errors[7]:
             self.root.ids.t_amb3.text = str(self.t_amb[2])
             self.root.ids.t_amb_z3.text = str(self.t_amb[2])
-            self.root.ids.t_amb_z3_p0.text = str(self.t_amb[2]) +'ºC'
+            self.root.ids.t_amb_z3_p0.text = '[b]' + str(self.t_amb[2]) +'ºC [/b]'
 
         else:
             self.root.ids.t_amb3.text = '[color=F14108] Error [/color]'
