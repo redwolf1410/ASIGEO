@@ -804,27 +804,29 @@ class MainApp(App):
             self.root.ids.t_amb_z3_p0.text = '[color=F14108] Error [/color]'
 
     def etiquetas_mod(self, sched, zona):
-        if zona == 0:
-            self.root.ids.t_des_z1_p0.text = self.consignas[zona]
-            if sched == 0:
-                self.root.ids.modo_z1.text = 'CONFORT'
+        try:
+            if zona == 0:
+                self.root.ids.t_des_z1_p0.text = self.consignas[zona]
+                if sched == 0:
+                    self.root.ids.modo_z1.text = 'CONFORT'
 
-            elif sched == 1:
-                self.root.ids.modo_z1.text = 'REDUCIDO'
-            else:
-                self.root.ids.modo_z1.text = 'APAGADO'
-        elif zona == 1:
-            self.root.ids.t_des_z2_p0.text = self.consignas[zona]
-            self.root.ids.t_des_z3_p0.text = self.consignas[2]
-            if sched == 0:
-                self.root.ids.modo_z2.text = 'CONFORT'
-            elif sched == 1:
-                self.root.ids.modo_z2.text = 'REDUCIDO'
-            else:
-                self.root.ids.modo_z2.text = 'APAGADO'
+                elif sched == 1:
+                    self.root.ids.modo_z1.text = 'REDUCIDO'
+                else:
+                    self.root.ids.modo_z1.text = 'APAGADO'
+            elif zona == 1:
+                self.root.ids.t_des_z2_p0.text = self.consignas[zona]
+                self.root.ids.t_des_z3_p0.text = self.consignas[2]
+                if sched == 0:
+                    self.root.ids.modo_z2.text = 'CONFORT'
+                elif sched == 1:
+                    self.root.ids.modo_z2.text = 'REDUCIDO'
+                else:
+                    self.root.ids.modo_z2.text = 'APAGADO'
+        except:
+            print("Kivy Error")
 
 
-        pass
 
 
 if __name__ == '__main__':
