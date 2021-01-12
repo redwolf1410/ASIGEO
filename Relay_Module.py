@@ -89,8 +89,8 @@ class Relees:
         self.Relay_Ch1 = 12
         self.Relay_Ch2 = 5
         self.Relay_Ch3 = 2
-        self.Relay_Ch4 = 24
-        self.Relay_Ch5 = 25
+        self.Relay_Ch4 = 25
+        self.Relay_Ch5 = 24
         self.Relay_Ch6 = 3
         self.Relay_Ch7 = 14
         self.Relay_Ch8 = 4
