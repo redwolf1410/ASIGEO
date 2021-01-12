@@ -86,8 +86,8 @@ class Relees:
         GPIO.output(self.Relay_Ch8, GPIO.HIGH)
 
     def __init__(self):
-        self.Relay_Ch1 = 5
-        self.Relay_Ch2 = 12
+        self.Relay_Ch1 = 12
+        self.Relay_Ch2 = 5
         self.Relay_Ch3 = 2
         self.Relay_Ch4 = 24
         self.Relay_Ch5 = 25
