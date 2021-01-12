@@ -364,7 +364,7 @@ class MainApp(App):
             json.dump(data, file, indent=4)
 
         with open('json_f/states.json', 'w') as file:
-            json.dump(self.states, file)
+            json.dump(self.states, file,indent=4)
 
     def modo_comfort(self, comfort, zona):
         self.comfort[zona] = comfort
@@ -433,7 +433,7 @@ class MainApp(App):
             aj_curva[zona] = int(curva)
             ajustes['curvas'] = aj_curva
             f.seek(0)
-            json.dump(ajustes, f)
+            json.dump(ajustes, f,indent=4)
 
         if curva == 0:
             self.estado_curvas[zona]["b1"] = "down"
@@ -458,7 +458,7 @@ class MainApp(App):
             aj_bomba[zona] = int(modo)
             ajustes['bombas'] = aj_bomba
             f.seek(0)
-            json.dump(ajustes, f)
+            json.dump(ajustes, f,indent=4)
         if modo:
             self.estado_bombas[zona]["b1"] = "normal"
             self.estado_bombas[zona]["b2"] = "down"
@@ -487,7 +487,7 @@ class MainApp(App):
             ajustes = json.load(f)
             ajustes['pt1000'] = self.pt1000
             f.seek(0)
-            json.dump(ajustes, f)
+            json.dump(ajustes, f,indent=4)
 
         if sonda == 0:
             self.states_sondas[num]["b1"] = "normal"
@@ -806,6 +806,7 @@ class MainApp(App):
             self.root.ids.t_amb_z3_p0.text = '[color=F14108] Error [/color]'
 
     def etiquetas_mod(self, sched, zona):
+        print(self.consignas[zona])
         try:
             if zona == 0:
                 self.root.ids.t_des_z1_p0.text = self.consignas[zona]
