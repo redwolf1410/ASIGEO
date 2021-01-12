@@ -120,14 +120,14 @@ class Relees:
     def test(self):
         try:
             while True:
-                for i in range(7):
+                for i in range(2):
                     for j in range(4):
                         GPIO.output(self.Relays[i], GPIO.LOW)
-                        print("Channel 1:The Common Contact is access to the Normal Open Contact!")
+                        print("Channel " + str(i) + ":Abriendo!\n")
                         time.sleep(0.5)
 
                         GPIO.output(self.Relays[i], GPIO.HIGH)
-                        print("Channel 1:The Common Contact is access to the Normal Closed Contact!\n")
+                        print("Channel " + str(i) + ":Cerrando!\n")
                         time.sleep(0.5)
 
 
