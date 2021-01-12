@@ -15,13 +15,13 @@ class Relees:
 
     def relayon(self, ch):
         relee = self.Relays[ch - 1]
-        GPIO.output(relee, GPIO.LOW)
+        GPIO.output(relee, GPIO.HIGH)
         print('Enciendo rele ' + str(ch))
 
 
     def relayoff(self, ch):
         relee = self.Relays[ch - 1]
-        GPIO.output(relee, GPIO.HIGH)
+        GPIO.output(relee, GPIO.LOW)
         print('Apago rele ' + str(ch))
 
     def abrir_bomba(self,zona):
@@ -76,14 +76,14 @@ class Relees:
 
 
     def seguridad(self):
-        GPIO.output(self.Relay_Ch1, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch2, GPIO.LOW)
-        GPIO.output(self.Relay_Ch3, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch4, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch5, GPIO.LOW)
-        GPIO.output(self.Relay_Ch6, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch7, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch8, GPIO.HIGH)
+        GPIO.output(self.Relay_Ch1, GPIO.LOW)
+        GPIO.output(self.Relay_Ch2, GPIO.HIGH)
+        GPIO.output(self.Relay_Ch3, GPIO.LOW)
+        GPIO.output(self.Relay_Ch4, GPIO.LOW)
+        GPIO.output(self.Relay_Ch5, GPIO.HIGH)
+        GPIO.output(self.Relay_Ch6, GPIO.LOW)
+        GPIO.output(self.Relay_Ch7, GPIO.LOW)
+        GPIO.output(self.Relay_Ch8, GPIO.LOW)
 
     def __init__(self):
         self.Relay_Ch1 = 12
@@ -108,25 +108,25 @@ class Relees:
         GPIO.setup(self.Relay_Ch7, GPIO.OUT)
         GPIO.setup(self.Relay_Ch8, GPIO.OUT)
 
-        GPIO.output(self.Relay_Ch1, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch2, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch3, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch4, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch5, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch6, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch7, GPIO.HIGH)
-        GPIO.output(self.Relay_Ch8, GPIO.HIGH)
+        GPIO.output(self.Relay_Ch1, GPIO.LOW)
+        GPIO.output(self.Relay_Ch2, GPIO.LOW)
+        GPIO.output(self.Relay_Ch3, GPIO.LOW)
+        GPIO.output(self.Relay_Ch4, GPIO.LOW)
+        GPIO.output(self.Relay_Ch5, GPIO.LOW)
+        GPIO.output(self.Relay_Ch6, GPIO.LOW)
+        GPIO.output(self.Relay_Ch7, GPIO.LOW)
+        GPIO.output(self.Relay_Ch8, GPIO.LOW)
 
     def test(self):
         try:
             while True:
                 for i in range(2):
                     for j in range(4):
-                        GPIO.output(self.Relays[i], GPIO.LOW)
+                        GPIO.output(self.Relays[i], GPIO.HIGH)
                         print("Channel " + str(i) + ":Abriendo!\n")
                         time.sleep(0.5)
 
-                        GPIO.output(self.Relays[i], GPIO.HIGH)
+                        GPIO.output(self.Relays[i], GPIO.LOW)
                         print("Channel " + str(i) + ":Cerrando!\n")
                         time.sleep(0.5)
 
