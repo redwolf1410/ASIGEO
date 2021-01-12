@@ -675,7 +675,10 @@ class MainApp(App):
                 print("Error")
 
     def cambiar_consigna(self, num, zona):
-        self.consignas[zona] = self.consignas[zona] + num
+
+        if self.consignas[zona] + num >= 10:
+            self.consignas[zona] = self.consignas[zona] + num
+
         if zona == 0:
             self.root.ids.cons_z1_inv_conf.text = str(self.consignas[zona])
             self.root.ids.cons_z1_ver_conf.text = str(self.consignas[zona])
@@ -807,9 +810,12 @@ class MainApp(App):
 
     def etiquetas_mod(self, sched, zona):
         print(self.consignas[zona])
-        try:
-            if zona == 0:
+        if zona == 0:
+            try:
                 self.root.ids.t_des_z1_p0.text = self.consignas[zona]
+            except:
+                print("Error kivy zona 1 consignas p0")
+            try:
                 if sched == 0:
                     self.root.ids.modo_z1.text = 'CONFORT'
 
@@ -817,17 +823,26 @@ class MainApp(App):
                     self.root.ids.modo_z1.text = 'REDUCIDO'
                 else:
                     self.root.ids.modo_z1.text = 'APAGADO'
-            elif zona == 1:
+            except:
+                print("Error kivy zona 1 modo p0")
+
+        elif zona == 1:
+            try:
                 self.root.ids.t_des_z2_p0.text = self.consignas[zona]
                 self.root.ids.t_des_z3_p0.text = self.consignas[2]
+            except:print("Error kivy zona 2 consignas p0")
+
+            try:
                 if sched == 0:
                     self.root.ids.modo_z2.text = 'CONFORT'
                 elif sched == 1:
                     self.root.ids.modo_z2.text = 'REDUCIDO'
                 else:
                     self.root.ids.modo_z2.text = 'APAGADO'
-        except:
-            print("Kivy Error")
+            except:print("Error kivy confort p0")
+
+
+
 
 
 
