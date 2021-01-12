@@ -202,11 +202,11 @@ class MainApp(App):
         thread1 = threading.Thread(target=self.main, args=[1])
         thread1.start()
 
-        '''thread2 = threading.Thread(target=self.main, args=[2])
+        thread2 = threading.Thread(target=self.main, args=[2])
         thread2.start()
 
         thread3 = threading.Thread(target=self.main_directa, args=[3])
-        thread3.start()'''
+        thread3.start()
 
         th_read = threading.Thread(target=self.lectura_sondas)
         th_read.start()
@@ -812,7 +812,7 @@ class MainApp(App):
         print(self.consignas[zona])
         if zona == 0:
             try:
-                self.root.ids.t_des_z1_p0.text = self.consignas[zona]
+                self.root.ids.t_des_z1_p0.text = str(self.consignas[zona])
             except:
                 print("Error kivy zona 1 consignas p0")
             try:
@@ -828,8 +828,8 @@ class MainApp(App):
 
         elif zona == 1:
             try:
-                self.root.ids.t_des_z2_p0.text = self.consignas[zona]
-                self.root.ids.t_des_z3_p0.text = self.consignas[2]
+                self.root.ids.t_des_z2_p0.text = str(self.consignas[zona])
+                self.root.ids.t_des_z3_p0.text = str(self.consignas[2])
             except:print("Error kivy zona 2 consignas p0")
 
             try:
