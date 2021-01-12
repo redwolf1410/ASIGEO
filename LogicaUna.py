@@ -18,8 +18,7 @@ class LogicaZonaDirecta:
         self.consigna = 20
         self.modo = 'invierno'
         self.rele = rele
-        
-    
+
     def logica(self,modo):
         funcionando = 0
         if modo == 'invierno':
