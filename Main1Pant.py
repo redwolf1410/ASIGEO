@@ -201,11 +201,13 @@ class MainApp(App):
 
         thread1 = threading.Thread(target=self.main, args=[1])
         thread1.start()
-        thread2 = threading.Thread(target=self.main, args=[2])
+
+        '''thread2 = threading.Thread(target=self.main, args=[2])
         thread2.start()
 
         thread3 = threading.Thread(target=self.main_directa, args=[3])
-        thread3.start()
+        thread3.start()'''
+
         th_read = threading.Thread(target=self.lectura_sondas)
         th_read.start()
     def backzone(self):
