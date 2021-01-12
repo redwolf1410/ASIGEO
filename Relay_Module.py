@@ -16,13 +16,13 @@ class Relees:
     def relayon(self, ch):
         relee = self.Relays[ch - 1]
         GPIO.output(relee, GPIO.HIGH)
-        print('Enciendo rele ' + str(ch))
+        #print('Enciendo rele ' + str(ch))
 
 
     def relayoff(self, ch):
         relee = self.Relays[ch - 1]
         GPIO.output(relee, GPIO.LOW)
-        print('Apago rele ' + str(ch))
+        #print('Apago rele ' + str(ch))
 
     def abrir_bomba(self,zona):
         if zona == 1:

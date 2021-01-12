@@ -305,7 +305,7 @@ class MainApp(App):
         return seguridad
 
     def readSensors(self):
-        print('Leyendo sensores')
+        #print('Leyendo sensores')
         error = False
         for i in range(0, 8):
             lev = mcp.read(i)
@@ -568,7 +568,7 @@ class MainApp(App):
             self.zona_directa.t_amb = self.t_amb[zona]
             self.zona_directa.consigna = self.consignas[zona]
             self.mutex.release()
-            funcionando = self.zona_directa.lógica(self.modo)
+            funcionando = self.zona_directa.logica(self.modo)
             time.sleep(5)
             try:
                 if funcionando:
@@ -616,7 +616,7 @@ class MainApp(App):
                     self.logicas[zona].sonda_suelo = self.t_suelo[zona]
                     self.logicas[zona].modo_bomba = self.bombas[zona]
                     self.logicas[zona].modo_curva = self.curvas[zona]
-                    print(self.modo)
+                    print("El modo es " + self.modo)
 
                     if sched == 0:
 

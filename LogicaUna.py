@@ -229,11 +229,11 @@ class LogicaZona:
             elif B018:  # abrir corto
                 reles.abrir_zona(self.zona)
                 if self.funcionando == 1:  # antes estaba abriendo largo
-                    print("Paro abriendo largo, abro corto")  # cambio temporizador
+
                     self.temporizador = 0
 
                     # activo rele
-                    print("Abriendo")
+                    #print("Abriendo")
                     sleep(5)
 
                 elif self.funcionando == 3:
@@ -247,22 +247,22 @@ class LogicaZona:
                     sleep(5)
 
                     if self.temporizador == self.TEMP_CORTA:
-                        print("Paro relee")  # cierro relee CH1
+
                         reles.parar_zona(self.zona)
                         sleep(5)
                         self.temporizador = 0
-                        print("Enciendo relee CH1")  # Abro relee CH1
+
 
                 self.funcionando = 2
 
             elif B025:  # Cerrar largo
                 reles.cerrar_zona(self.zona)
                 if (self.funcionando == 1) or (self.funcionando == 2):
-                    print("Paro abrir y empiezo a cerrar")  # cierro CH1 y abro CH2
+                    #print("Paro abrir y empiezo a cerrar")  # cierro CH1 y abro CH2
                     self.temporizador = 0
                     sleep(5)
                 else:  # Antes ya estaba cerrando o parado
-                    print("cerrando")
+                    #print("cerrando")
                     self.temporizador += 1
                     sleep(5)
                     if self.temporizador == 6:
@@ -270,7 +270,7 @@ class LogicaZona:
                         print("Paro 5 seg")
                         sleep(5)
                         self.temporizador = 0
-                        print("Enciendo relee CH2")  # Abro relee CH2
+                        #print("Enciendo relee CH2")  # Abro relee CH2
 
                 self.funcionando = 3
 
@@ -307,7 +307,7 @@ class LogicaZona:
                     self.temporizador = 0
                     sleep(5)
                 else:  # Antes ya estaba cerrando
-                    print("cerrando")
+                    #print("cerrando")
 
                     self.temporizador += 1
                     if self.temporizador == 6:
@@ -315,7 +315,7 @@ class LogicaZona:
                         print("Paro 5 seg")
                         sleep(5)
                         self.temporizador = 0
-                        print("Enciendo relee CH2")  # Abro relee CH2
+                        #print("Enciendo relee CH2")  # Abro relee CH2
                     else:
                         sleep(5)
 
@@ -329,24 +329,24 @@ class LogicaZona:
                     self.temporizador = 0
 
                     # activo rele
-                    print("Abriendo")
+                    #print("Abriendo")
                     sleep(5)
 
                 elif self.funcionando == 3:
-                    print("Paro cerrar, abro corto")  # cierro CH2, abro CH1
+                    #print("Paro cerrar, abro corto")  # cierro CH2, abro CH1
                     self.temporizador = 0
                     sleep(5)
 
                 else:  # funcionando = 2
 
-                    print("Sigo abriendo")
+                    #print("Sigo abriendo")
                     self.temporizador += 1
                     if self.temporizador == self.TEMP_CORTA:
                         reles.parar_zona(self.zona)
-                        print("Paro relee")  # cierro relee CH1
+                        #print("Paro relee")  # cierro relee CH1
                         sleep(5)
                         self.temporizador = 0
-                        print("Enciendo relee CH1")  # Abro relee CH1
+                        #print("Enciendo relee CH1")  # Abro relee CH1
 
                     else:
                         sleep(5)
