@@ -192,7 +192,7 @@ class MainApp(App):
         self.ajustes = True
 
         self.logicas = [LogicaZona(1), LogicaZona(2)]
-        self.zona_directa = LogicaZonaDirecta(rele=6)
+        self.zona_directa = LogicaZonaDirecta(rele=7)
 
         self.mutex = threading.Semaphore(1)
         self.mutex_sec = threading.Semaphore(1)
