@@ -86,7 +86,7 @@ class Main(ScreenManager):
 
 def from_level_to_temp(level):
     error = False
-    volt = level * 3.3 / 4096
+    volt = level * 3.3 / 3900
     r = (1000 * volt) / (3.3 - volt)
     r1 = 100000 * r / (100000 - r)
     temp = pt1000_temperature(r1)
@@ -96,7 +96,7 @@ def from_level_to_temp(level):
 
 
 def from_level_to_temp_ntc(beta, r25, level):
-    volt = level * 3.3 / 4096
+    volt = level * 3.3 / 3900
     r = (10000 * volt) / (3.3 - volt)
     r1 = 100000 * r / (100000 - r)
     error = False
